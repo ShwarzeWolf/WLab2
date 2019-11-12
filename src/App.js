@@ -1,26 +1,61 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class WeatherBlock extends Component {
+    constructor() {
+        super();
+        this.state = {
+            weatherData: null
+        };
+    }
+
+    componentDidMount() {
+        const name = this.props.name;
+        const URL = "http://api.openweathermap.org/data/2.5/weather?q=" +
+            name +
+            "&appid=f51bcfb8b207b0ef58ce10da80b90477";
+
+        fetch(URL)
+            .then(res => res.json())
+            .then(json => {
+            this.setState({ weatherData: json });
+        });
+    }
+
+    render() {
+        const weatherData = this.state.weatherData;
+
+        if (!weatherData)
+            return(<div>Подождите, данные загружаются</div>);
+
+        //return JSON.stringify(weatherData);
+        const weather = weatherData.weather[0];
+        const iconUrl = "http://openweathermap.org/img/w/" + weather.icon + ".png";
+
+        return (
+            <div class="weatherInfo">
+                <p>Название города: {weatherData.name}</p>
+                <p>Иконка погоды: <img src={iconUrl} alt={weatherData.description} /></p>
+                <p>Температура: {weatherData.main.temp}°</p>
+                <p>Ветер: {weatherData.wind.speed}</p>
+                <p>Облачность: {weatherData.clouds.all}</p>
+                <p>Давление: {weatherData.main.pressure}</p>
+                <p>Влажность: {weatherData.main.humidity} </p>
+                <p>Координаты: [{weatherData.coord.lon} {weatherData.coord.lat}]</p>
+            </div>
+        );
+    }
+}
+
+class App extends Component {
+    render() {
+        return (
+            <div className="App">
+                <WeatherBlock name={"Surgut"} />
+            </div>
+        );
+    }
 }
 
 export default App;
