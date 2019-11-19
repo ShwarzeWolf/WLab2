@@ -19,16 +19,15 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="151" column="12" lean-forward="true" selection-start-line="151" selection-start-column="12" selection-end-line="151" selection-end-column="12" />
+            <state relative-caret-position="33">
+              <caret line="105" column="22" selection-start-line="105" selection-start-column="22" selection-end-line="105" selection-end-column="22" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
-                <element signature="e#126#317#0" />
-                <element signature="n#!!block;n#componentDidMount#0;n#LocationWeatherInfo#0" />
-                <element signature="n#!!block;n#componentDidUpdate#0;n#LocationWeatherInfo#0" />
-                <element signature="n#!!block;n#formRequesr#0;n#WeatherBlock#0" />
+                <element signature="n#!!block;n#formRequest#0;n#WeatherBlock#0" />
                 <element signature="n#!!block;n#componentDidMount#0;n#WeatherBlock#0" />
-                <element signature="e#4608#5186#0" />
+                <element signature="n#!!block;n#componentDidUpdate#0;n#WeatherBlock#0" />
+                <element signature="n#!!block;n#getLocation#0;n#CurrentCity#0" />
+                <element signature="n#!!block;n#render#0;n#CurrentCity#0" />
               </folding>
             </state>
           </provider>
@@ -106,15 +105,16 @@
       <list>
         <option value="$PROJECT_DIR$/task.md" />
         <option value="$PROJECT_DIR$/tasksForImplementatiov.md" />
+        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/App.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-12" />
-    <option name="y" value="-12" />
-    <option name="width" value="1944" />
-    <option name="height" value="1044" />
+    <option name="x" value="949" />
+    <option name="y" value="-11" />
+    <option name="width" value="983" />
+    <option name="height" value="1043" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -151,6 +151,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="MTCustomThemeConfigurable" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -195,7 +196,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13995000" />
+    <option name="totallyTimeSpent" value="22090000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
@@ -287,16 +288,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="151" column="12" lean-forward="true" selection-start-line="151" selection-start-column="12" selection-end-line="151" selection-end-column="12" />
+        <state relative-caret-position="33">
+          <caret line="105" column="22" selection-start-line="105" selection-start-column="22" selection-end-line="105" selection-end-column="22" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
-            <element signature="e#126#317#0" />
-            <element signature="n#!!block;n#componentDidMount#0;n#LocationWeatherInfo#0" />
-            <element signature="n#!!block;n#componentDidUpdate#0;n#LocationWeatherInfo#0" />
-            <element signature="n#!!block;n#formRequesr#0;n#WeatherBlock#0" />
+            <element signature="n#!!block;n#formRequest#0;n#WeatherBlock#0" />
             <element signature="n#!!block;n#componentDidMount#0;n#WeatherBlock#0" />
-            <element signature="e#4608#5186#0" />
+            <element signature="n#!!block;n#componentDidUpdate#0;n#WeatherBlock#0" />
+            <element signature="n#!!block;n#getLocation#0;n#CurrentCity#0" />
+            <element signature="n#!!block;n#render#0;n#CurrentCity#0" />
           </folding>
         </state>
       </provider>

@@ -2,27 +2,24 @@ import React, {Component} from 'react';
 import './App.css';
 
 class WeatherBlock extends Component {
-   constructor(props) {
-        super(props);
-        this.state = {
-            weatherData: undefined,
-            errorOccurred: false,
-            errorMessage: undefined,
-            cityName: props.cityName,
-            latitude: props.latitude,
-            longitude: props.longitude
-        };
-    }
+ state = {
+     weatherData: undefined,
+     errorOccurred: false,
+     errorMessage: undefined,
+     cityName: undefined,
+     latitude: undefined,
+     longitude: undefined
+ };
 
-   formRequest(){
-        const name = this.state.cityName;
-        const latitude = this.state.latitude;
-        const longitude = this.state.longitude;
+   formRequest(city, longitude, latitude){
 
-        if (!!name)
+       console.log(this.state);
+        if (!!city)
             return "http://api.openweathermap.org/data/2.5/weather?q=" +
-                name +
+                city +
                 "&appid=f51bcfb8b207b0ef58ce10da80b90477";
+
+        console.log("we are here");
 
         if (!!latitude && !!longitude)
             return "http://api.openweathermap.org/data/2.5/weather?lon=" +
@@ -32,8 +29,8 @@ class WeatherBlock extends Component {
         return null;
     }
 
-   componentDidMount() {
-        const URL = this.formRequest();
+   getWeatherData = async(city, longitude, latitude) => {
+        const URL = await this.formRequest(city, longitude, latitude);
 
         fetch(URL)
             .then(res => res.json())
@@ -47,10 +44,22 @@ class WeatherBlock extends Component {
                     this.setState({errorMessage: json.message});
                     this.setState({errorOccurred: true})
                 }
-        });
+            });
+   };
+
+   componentDidMount() {
+        this.getWeatherData(this.props.cityName, this.props.longitude, this.props.latitude);
+   }
+
+   componentDidUpdate(prevProps) {
+        if (prevProps.cityName !== this.props.cityName ||
+            prevProps.longitude !== this.props.longitude ||
+            prevProps.latitude !== this.props.latitude) {
+            this.getWeatherData(this.props.cityName, this.props.longitude, this.props.latitude);
+        }
     }
 
-    render() {
+   render() {
         const weatherData = this.state.weatherData;
 
         if (!weatherData)
@@ -68,7 +77,7 @@ class WeatherBlock extends Component {
         const iconUrl = "http://openweathermap.org/img/w/" + weatherData.weather[0].icon + ".png";
 
         return (
-            <div class="weatherInfo">
+            <div className="weatherInfo">
                 <p>Название города: {weatherData.name}</p>
                 <p>Иконка погоды: <img src={iconUrl} alt={weatherData.description} /></p>
                 <p>Температура: {weatherData.main.temp}°</p>
@@ -89,6 +98,27 @@ class CurrentCity extends Component{
             cityName : "Surgut",
             latitude : undefined,
             longitude: undefined
+        };
+
+        this.getLocation = this.getLocation.bind(this);
+    }
+
+    getLocation(event){
+        event.preventDefault();
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position => {
+                this.setState({
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                    cityName: undefined
+                });
+            }));
+        } else {
+            this.setState({
+                latitude: undefined,
+                longitude: undefined,
+                cityName: "Surgut"
+            });
         }
     }
 
@@ -96,7 +126,9 @@ class CurrentCity extends Component{
         return(
             <div className="currentCity">
                 <h1>Погода здесь</h1>
-                <button>Обновить геолокацию</button>
+                <form onSubmit={this.getLocation}>
+                    <button>Обновить геолокацию</button>
+                </form>.
                 <WeatherBlock cityName={this.state.cityName} latitude={this.state.latitude} longitude={this.state.longitude} />
             </div>
         )
