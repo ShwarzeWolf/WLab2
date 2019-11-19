@@ -48,11 +48,21 @@ class WeatherBlock extends Component {
     }
 }
 
+class CurrentCity extends Component{
+    render(){
+        return(
+            <div className="currentCity">
+                <WeatherBlock name={"Surgut"} />
+            </div>
+        )
+    }
+}
+
 class App extends Component {
     render() {
         return (
             <div className="App">
-                <WeatherBlock name={"Surgut"} />
+                <CurrentCity/>
             </div>
         );
     }
