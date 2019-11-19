@@ -31,10 +31,10 @@ class CurrentCity extends Component{
         }
     }
 
-    getLocationButtonPress(event){
+    getLocationButtonPress = (event) => {
         event.preventDefault();
         this.getLocation()
-    }
+    };
 
     render(){
         this.getLocation();
@@ -44,7 +44,7 @@ class CurrentCity extends Component{
                 <h1>Погода здесь</h1>
                 <form onSubmit={this.getLocationButtonPress}>
                     <button>Обновить геолокацию</button>
-                </form>.
+                </form>
                 <WeatherBlock cityName={this.state.cityName} latitude={this.state.latitude} longitude={this.state.longitude} />
             </div>
         )
