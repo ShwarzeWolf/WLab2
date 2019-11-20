@@ -13,7 +13,7 @@ class CurrentCity extends Component{
         this.addCityButtonPress = this.getLocationButtonPress.bind(this);
     }
 
-    getLocation(){
+    getLocation = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position => {
                 this.setState({
@@ -35,6 +35,10 @@ class CurrentCity extends Component{
         event.preventDefault();
         this.getLocation()
     };
+
+    componentDidMount() {
+        this.getLocation();
+    }
 
     render(){
         this.getLocation();
