@@ -1,17 +1,22 @@
-let state = {
+import {ADD_CITY, DELETE_CITY} from "./actions/ActionTypes";
+
+const initialState = {
     cities: []
 };
 
-function updateStorage(state, action) {
-    if (action.type === 'ADD_CITY')
-        return action;
-    else if (action.type === 'REMOVE_CITY')
-        return state;
-    else
-        return state;
+function rootReducer(state = initialState, action) {
+    if (action.type === ADD_CITY) {
+        return Object.assign({}, state, {
+            cities: state.cities.concat(action.payload)
+        });
+    } else if (action.type === DELETE_CITY) {
+        return Object.assign({}, state, {
+            cities: state.cities.filter(function (city) {
+                return city.timeAdded !== action.payload.timeAdded;
+            })
+        });
+    }
+    return state;
 };
 
-const addCityAction = {type: 'ADD_CITY', city: 'Surgut'};
-const removeCityAction = {type: 'REMOVE_CITY', city: 'Surgut'} ;
-
-state = updateStorage(state, addCityAction);
+export default rootReducer;

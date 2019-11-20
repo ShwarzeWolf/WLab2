@@ -10,7 +10,7 @@ class CurrentCity extends Component{
             longitude: undefined
         };
 
-        this.getLocationButtonPress = this.getLocationButtonPress.bind(this);
+        this.addCityButtonPress = this.getLocationButtonPress.bind(this);
     }
 
     getLocation(){
