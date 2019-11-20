@@ -1,4 +1,4 @@
-import {ADD_CITY, DELETE_CITY} from "./actions/ActionTypes";
+import {ADD_CITY, REMOVE_CITY} from './actions/ActionTypes';
 
 const initialState = {
     cities: []
@@ -9,7 +9,7 @@ function rootReducer(state = initialState, action) {
         return Object.assign({}, state, {
             cities: state.cities.concat(action.payload)
         });
-    } else if (action.type === DELETE_CITY) {
+    } else if (action.type === REMOVE_CITY) {
         return Object.assign({}, state, {
             cities: state.cities.filter(function (city) {
                 return city.timeAdded !== action.payload.timeAdded;
@@ -18,5 +18,6 @@ function rootReducer(state = initialState, action) {
     }
     return state;
 };
+
 
 export default rootReducer;

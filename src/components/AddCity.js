@@ -1,26 +1,22 @@
 import React from 'react';
-class AddCity extends React.Component{
+import {Component} from 'react';
 
-    state = {
-        city: undefined
-    }
-
-    addCity = (e) =>{
-        e.preventDefault();
-        console.log("dobavlyayem gorod ", e.target[0].value);
-        this.props.addCity(e.target[0].value);
-    }
+class AddCity extends Component{
+    addCity = (event) =>{
+        event.preventDefault();
+        this.props.addCity(event.target[0].value);
+    };
 
     render() {
         return(
-            <div>
+            <div className="addCityForm">
                 <form onSubmit={this.addCity}>
-                    <input></input>
-                    <button>add city</button>
+                    <input type="text" placeholder="Добавьте новый город"></input>
+                    <button className="addCityButton">+</button>
                 </form>
             </div>
         );
     }
-
 }
+
 export default AddCity
