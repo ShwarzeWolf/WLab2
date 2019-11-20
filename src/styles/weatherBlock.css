@@ -1,0 +1,16 @@
+.weatherMain{
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.weatherInfo{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.weatherLine{
+    background: #dcdcdc;
+    margin: 5px;
+    width: 500px;
+    align-content: flex-start;
+}

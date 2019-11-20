@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import '../styles/weatherBlock.css'
 
 class WeatherBlock extends Component {
     state = {
@@ -11,8 +12,6 @@ class WeatherBlock extends Component {
     };
 
     formRequest(city, longitude, latitude){
-
-        console.log(this.state);
         if (!!city)
             return "http://api.openweathermap.org/data/2.5/weather?q=" +
                 city +
@@ -75,13 +74,15 @@ class WeatherBlock extends Component {
 
         return (
             <div className="weatherInfo">
-                <h2>{weatherData.name} <img src={iconUrl} alt={weatherData.description} /></h2>
-                <p>Температура: {(weatherData.main.temp - 273.15).toFixed(2)}°</p>
-                <p>Ветер: {weatherData.wind.speed}</p>
-                <p>Облачность: {weatherData.clouds.all}</p>
-                <p>Давление: {weatherData.main.pressure}</p>
-                <p>Влажность: {weatherData.main.humidity} </p>
-                <p>Координаты: [{weatherData.coord.lon} {weatherData.coord.lat}]</p>
+                <div className="weatherMain">{weatherData.name} <img src={iconUrl} alt={weatherData.description} /></div>
+                <div className="weatherSpecified">
+                    <div className="weatherLine">Температура: {(weatherData.main.temp - 273.15).toFixed(2)}°</div>
+                    <div className="weatherLine">Ветер: {weatherData.wind.speed}</div>
+                    <div className="weatherLine">Облачность: {weatherData.clouds.all}</div>
+                    <div className="weatherLine">Давление: {weatherData.main.pressure}</div>
+                    <div className="weatherLine">Влажность: {weatherData.main.humidity} </div>
+                    <div className="weatherLine">Координаты: [{weatherData.coord.lon} {weatherData.coord.lat}]</div>
+                </div>
             </div>
         );
     }

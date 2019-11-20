@@ -42,9 +42,9 @@ class CurrentCity extends Component{
         return(
             <div className="currentCity">
                 <h1>Погода здесь</h1>
-                <form onSubmit={this.getLocationButtonPress}>
-                    <button>Обновить геолокацию</button>
-                </form>
+                    <form className="updateGeoLocation" onSubmit={this.getLocationButtonPress}>
+                        <button>Обновить геолокацию</button>
+                    </form>
                 <WeatherBlock cityName={this.state.cityName} latitude={this.state.latitude} longitude={this.state.longitude} />
             </div>
         )

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import './App.css';
 import CurrentCity from './components/CurrentCity'
 import FavouriteCities from './components/FavouriteCities'
 

@@ -6,7 +6,6 @@ import AddCity from "./AddCity";
 import {addCity} from "../actions/AddCity";
 import {removeCity} from "../actions/RemoveCity";
 
-
 function mapDispatchToProps(dispatch) {
     return {
         addCity: city => dispatch(addCity(city)),
@@ -33,21 +32,22 @@ class ConnectedFavouriteCities extends Component {
 
     formatCities = (cities) => {
         return cities.map((city) =>
-            <li key={city.timeAdded}>
-                <WeatherBlock cityName={city.name}/>
+            <div className="weatherItem"
+                 key={city.timeAdded}>
                 <RemoveCity city={city} removeCity={this.removeCity}/>
-            </li>
+                <WeatherBlock cityName={city.name}/>
+            </div>
         );
     };
 
     render() {
         return (
             <div className="favouriteCities">
-                <h1>Избранное</h1>
-                <ul className="favouriteCity">{
-                    this.formatCities(this.props.cities)
-                }</ul>
+                <h1 className="blockHeader">Избранное </h1>
                 <AddCity addCity={this.addCity}/>
+                <div className="favouriteCity">{
+                    this.formatCities(this.props.cities)
+                }</div>
             </div>
         );
     }
