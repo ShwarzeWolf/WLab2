@@ -4,6 +4,7 @@ import '../styles/weatherBlock.css'
 class WeatherBlock extends Component {
     state = {
         weatherData: undefined,
+        isLoading: false,
         errorOccurred: false,
         errorMessage: undefined,
         cityName: undefined,
@@ -26,9 +27,11 @@ class WeatherBlock extends Component {
     }
 
     getWeatherData = async(city, longitude, latitude) => {
+        this.setState({isLoading: true});
+
         const URL = await this.formRequest(city, longitude, latitude);
 
-        fetch(URL)
+        await fetch(URL)
             .then(res => res.json())
             .then(json => {
                 if (json.cod === 200) {
@@ -41,6 +44,8 @@ class WeatherBlock extends Component {
                     this.setState({errorOccurred: true})
                 }
             });
+
+        this.setState({isLoading : false});
     };
 
     componentDidMount() {
@@ -58,6 +63,9 @@ class WeatherBlock extends Component {
     render() {
         const weatherData = this.state.weatherData;
 
+        if (this.state.isLoading)
+            return(<div>Подождите, данные загружаются</div>);
+
         if (!weatherData)
             if (this.state.errorOccurred)
                 return(
@@ -67,8 +75,7 @@ class WeatherBlock extends Component {
                     </div>
                 );
             else
-                return(<div>Подождите, данные загружаются</div>);
-
+                return null;
 
         const iconUrl = "http://openweathermap.org/img/w/" + weatherData.weather[0].icon + ".png";
 
