@@ -3,19 +3,18 @@ import {connect} from "react-redux";
 import WeatherBlock from "./WeatherBlock";
 import RemoveCity from "./RemoveCity";
 import AddCity from "./AddCity";
-import {addCity} from "../actions/AddCity";
-import {removeCity} from "../actions/RemoveCity";
+import {addCity, removeCity} from "../actions/actions"
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = (dispatch) => {
     return {
         addCity: city => dispatch(addCity(city)),
         removeCity: city => dispatch(removeCity(city))
     };
-}
+};
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
     return {cities: state.cities};
-}
+};
 
 class ConnectedFavouriteCities extends Component {
     state = {
@@ -28,7 +27,8 @@ class ConnectedFavouriteCities extends Component {
             id: this.state.ID
         });
 
-        this.state.ID++;
+        let currentID = this.state.ID + 1;
+        this.setState({ID: currentID});
     };
 
     removeCity = (city) => {
@@ -36,9 +36,10 @@ class ConnectedFavouriteCities extends Component {
     };
 
     formatCities = (cities) => {
+
         return cities.map((city) =>
             <div className="weatherItem"
-                 key={city.id}>
+                key={city.id}>
                 <RemoveCity city={city} removeCity={this.removeCity}/>
                 <WeatherBlock cityName={city.name}/>
             </div>

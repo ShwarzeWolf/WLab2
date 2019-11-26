@@ -11,7 +11,6 @@ class CurrentCity extends Component{
         };
 
         this.getLocationButtonPress = this.getLocationButtonPress.bind(this);
-
     }
 
     getLocation = () => {
