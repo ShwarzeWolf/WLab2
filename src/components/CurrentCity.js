@@ -10,7 +10,8 @@ class CurrentCity extends Component{
             longitude: undefined
         };
 
-        this.addCityButtonPress = this.getLocationButtonPress.bind(this);
+        this.getLocationButtonPress = this.getLocationButtonPress.bind(this);
+
     }
 
     getLocation = () => {
@@ -29,19 +30,15 @@ class CurrentCity extends Component{
                 cityName: "Surgut"
             });
         }
-    }
+    };
 
     getLocationButtonPress = (event) => {
         event.preventDefault();
         this.getLocation()
     };
 
-    componentDidMount() {
-        this.getLocation();
-    }
-
     render(){
-        this.getLocation();
+        navigator.geolocation.getCurrentPosition(function(){});
 
         return(
             <div className="currentCity">

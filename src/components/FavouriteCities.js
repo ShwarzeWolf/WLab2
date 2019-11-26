@@ -18,12 +18,17 @@ function mapStateToProps(state) {
 }
 
 class ConnectedFavouriteCities extends Component {
+    state = {
+        ID : 0
+    };
+
     addCity = (cityName) => {
-        const timeAdded = Date.now();
         this.props.addCity({
             name: cityName,
-            timeAdded: timeAdded
+            id: this.state.ID
         });
+
+        this.state.ID++;
     };
 
     removeCity = (city) => {
@@ -33,7 +38,7 @@ class ConnectedFavouriteCities extends Component {
     formatCities = (cities) => {
         return cities.map((city) =>
             <div className="weatherItem"
-                 key={city.timeAdded}>
+                 key={city.id}>
                 <RemoveCity city={city} removeCity={this.removeCity}/>
                 <WeatherBlock cityName={city.name}/>
             </div>

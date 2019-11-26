@@ -12,7 +12,7 @@ function rootReducer(state = initialState, action) {
     } else if (action.type === REMOVE_CITY) {
         return Object.assign({}, state, {
             cities: state.cities.filter(function (city) {
-                return city.timeAdded !== action.payload.timeAdded;
+                return city.id !== action.payload.id;
             })
         });
     }
